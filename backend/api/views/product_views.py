@@ -10,6 +10,10 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 
+#import pickle
+import pickle
+import joblib
+import os
 
 # Local Import
 # from api.products import products
@@ -73,6 +77,7 @@ def createProductReview(request, pk):
     product = Product.objects.get(_id=pk)
     data = request.data
     
+    
     # 1 Review already exists
     alreadyExists = product.review_set.filter(user=user).exists()
 
@@ -87,13 +92,26 @@ def createProductReview(request, pk):
 
     # 3 Create review
     else:
+        #filter fake reviews
+        filepath = r'C:\Users\Asus\Desktop\grocer\Ecommerce-DigitalStore-React-Django-Reduxtoolkit\backend\pymodels\review_model.pkl'
+        loaded = joblib.load(open(filepath, 'rb'))
+        comments = data['comment']
+        trust = loaded.predict([comments])
+        score = 'low'
+        if trust[0] == 'OR':
+            score = 'high'
+        
         review = Review.objects.create(
             user=user,
             product=product,
             name=user.first_name,
             rating=data['rating'],
             comment=data['comment'],
+            score=score,
         )
+        
+        
+        
         reviews = product.review_set.all()
         product.numReviews = len(reviews)
 

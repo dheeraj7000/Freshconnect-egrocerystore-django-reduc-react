@@ -156,6 +156,7 @@ function ProductScreen({ match, history }) {
                     <Rating value={review.rating} />
                     <p>{review.createdAt.substring(0, 10)}</p>
                     <p>{review.comment}</p>
+                    <p>Review trust score - {review.score}</p>
                   </ListGroup.Item>
                 ))}
                 <ListGroup.Item>
