@@ -73,7 +73,17 @@ const Header = () => {
             <SearchBox />
           </div>
           <div className={classes.grow} />
-
+          <div>
+            <IconButton
+              aria-label="show cart items"
+              color="inherit"
+              component={Link}
+              to="/smartcart"
+              style={{ color: "Red" }}
+            >
+              <ShoppingCart />
+            </IconButton>
+          </div>
           <div>
             <IconButton
               aria-label="show cart items"

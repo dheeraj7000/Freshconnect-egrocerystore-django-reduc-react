@@ -14,6 +14,10 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=12,decimal_places=2,null=True,blank=True)
     countInStock = models.IntegerField(null=True,blank=True,default=0)
     createdAt = models.DateTimeField(auto_now_add=True)
+    #added_by_dheeraj
+    #expirydate = models.DateField(auto_now_add=True)
+    deliveryoptions = models.CharField(max_length=20,blank=True,null=True)
+    susratings = models.IntegerField(blank=True,null=True)
     _id = models.AutoField(primary_key=True,editable=False)
 
     def __str__(self):
@@ -28,6 +32,8 @@ class Review(models.Model):
     comment = models.TextField(null=True,blank=True)
     score = models.TextField(null=True, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
+    #changes
+    video = models.FileField(upload_to='backend\media', null=True, blank=True)
     _id =  models.AutoField(primary_key=True,editable=False)
 
     def __str__(self):
@@ -43,6 +49,7 @@ class Order(models.Model):
     isPaid = models.BooleanField(default=False)
     paidAt = models.DateTimeField(auto_now_add=False,null=True, blank=True)
     isDeliver = models.BooleanField(default=False)
+    deliveryoptions = models.TextField(blank=True,null=True)
     deliveredAt = models.DateTimeField(auto_now_add=False,null=True, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True,null=True, blank=True)
     _id =  models.AutoField(primary_key=True,editable=False)
@@ -58,6 +65,7 @@ class OrderItem(models.Model):
     qty = models.IntegerField(null=True,blank=True,default=0)
     price = models.DecimalField(max_digits=12,decimal_places=2,null=True,blank=True)
     image = models.CharField(max_length=200,null=True,blank=True)
+    deliveryoptions = models.TextField(blank=True,null=True)
     _id =  models.AutoField(primary_key=True,editable=False)
 
     def __str__(self):

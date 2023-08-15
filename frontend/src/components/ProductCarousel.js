@@ -21,7 +21,7 @@ function ProductCarousel() {
   ) : error ? (
     <Message variant="danger">{error}</Message>
   ) : (
-    <Carousel style={{height:"300px"}} pause="hover" className="bg-dark" interval={5000}>
+    <Carousel style={{height:"300px"}} pause="hover" className="bg-dark" interval={100}>
       {products.map((product) => (
         <Carousel.Item key={product._id}>
           <Link to={`/product/${product._id}`}>

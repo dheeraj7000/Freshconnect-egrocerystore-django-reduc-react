@@ -157,6 +157,7 @@ function ProductScreen({ match, history }) {
                     <p>{review.createdAt.substring(0, 10)}</p>
                     <p>{review.comment}</p>
                     <p>Review trust score - {review.score}</p>
+                    
                   </ListGroup.Item>
                 ))}
                 <ListGroup.Item>
@@ -202,6 +203,7 @@ function ProductScreen({ match, history }) {
                         Submit
                       </Button>
                     </Form>
+                    
                   ) : (
                     <Message>
                       Please <Link to="/login">sign in</Link> to write a review
